@@ -20,8 +20,8 @@ const Landing = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black leading-none text-navy">
-              BUILD.<br />
               COMPETE.<br />
+              ORGANISE.<br />
               <span className="text-orange">WIN.</span>
             </h1>
             
@@ -41,13 +41,13 @@ const Landing = () => {
               </Button>
             </div>
 
-            <div className="flex items-center gap-8 pt-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 pt-4">
               <div className="border-l-4 border-black pl-4">
-                <p className="text-3xl font-black text-navy">10K+</p>
+                <p className="text-2xl sm:text-3xl font-black text-navy">10K+</p>
                 <p className="text-sm font-bold text-navy/70">Active Users</p>
               </div>
               <div className="border-l-4 border-black pl-4">
-                <p className="text-3xl font-black text-navy">500+</p>
+                <p className="text-2xl sm:text-3xl font-black text-navy">500+</p>
                 <p className="text-sm font-bold text-navy/70">Hackathons</p>
               </div>
             </div>
