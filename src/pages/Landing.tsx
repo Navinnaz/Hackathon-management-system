@@ -41,7 +41,7 @@ const Landing = () => {
               </Button>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-8 pt-4">
+            {/* <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-8 pt-4">
               <div className="border-l-4 border-black pl-3 md:pl-4">
                 <p className="text-xl md:text-2xl lg:text-3xl font-black text-navy">10K+</p>
                 <p className="text-sm font-bold text-navy/70">Active Users</p>
@@ -50,7 +50,7 @@ const Landing = () => {
                 <p className="text-xl md:text-2xl lg:text-3xl font-black text-navy">500+</p>
                 <p className="text-sm font-bold text-navy/70">Hackathons</p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="relative mt-8 lg:mt-0">
