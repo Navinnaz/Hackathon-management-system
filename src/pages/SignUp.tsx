@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
 import { toast } from "sonner";
 import { ArrowLeft } from "lucide-react";
+import { supabase } from "@/supabaseClient";
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -64,6 +66,33 @@ const SignUp = () => {
       setTimeout(() => navigate("/"), 1500);
     }
   };
+
+  const handleGoogleSignUp = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin, // redirects back to your app
+      },
+    });
+    if (error) {
+      toast.error("Google sign-up failed. Please try again.");
+      console.error(error.message);
+    }
+  };
+
+  const handleGithubSignUp = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: window.location.origin,
+      },
+    });
+    if (error) {
+      toast.error("GitHub sign-up failed. Please try again.");
+      console.error(error.message);
+    }
+  };
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -169,6 +198,34 @@ const SignUp = () => {
                   SIGN IN
                 </Link>
               </p>
+            </div>
+            {/* Social Sign Up Section */}
+            <div className="mt-8 text-center space-y-4">
+              <div className="flex items-center justify-center gap-2">
+                <div className="h-px w-20 bg-navy/30"></div>
+                <span className="text-navy/70 text-sm font-semibold">or sign up with</span>
+                <div className="h-px w-20 bg-navy/30"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center justify-center gap-3 mt-4">
+                <Button
+                  onClick={handleGoogleSignUp}
+                  variant="outline"
+                  className="w-full md:w-auto bg-white border-2 border-navy text-navy font-bold hover:bg-orange hover:text-off-white transition-all"
+                >
+                  <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" className="h-5 w-5 mr-2" />
+                  Continue with Google
+                </Button>
+
+                <Button
+                  onClick={handleGithubSignUp}
+                  variant="outline"
+                  className="w-full md:w-auto bg-white border-2 border-navy text-navy font-bold hover:bg-navy hover:text-off-white transition-all"
+                >
+                  <img src="https://www.svgrepo.com/show/475654/github-color.svg" alt="GitHub" className="h-5 w-5 mr-2" />
+                  Continue with GitHub
+                </Button>
+              </div>
             </div>
           </div>
 
