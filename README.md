@@ -91,7 +91,9 @@ Colors:
 
 Navy: #11224E
 Orange: #F87B1B
+
 Green: #CBD99B
+
 Off-White: #EEEEEE
 
 ## 💡 Developer Notes
