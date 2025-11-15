@@ -8,17 +8,19 @@ import Landing from "./pages/Landing";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
+
 import { AuthProvider } from "./contexts/authContext";
+import ProfilePage from "./pages/ProfilePage";
+
+import ProtectedRoute from "@/components/ProtectedRoute"; // ✅ Import this
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-
-      {/* Wrap everything inside AuthProvider */}
+      {/* Auth provider wraps everything */}
       <AuthProvider>
-
         <Toaster />
         <Sonner />
 
@@ -27,10 +29,20 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+
+            {/* ✅ Protected Route */}
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>

@@ -51,7 +51,17 @@ const Navbar = () => {
                     onClick={() => setDropdownOpen((prev) => !prev)}
                   />
                   {dropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-40 bg-white border-2 border-black rounded-lg shadow-lg text-sm font-bold text-navy">
+                    <div className="absolute right-0 mt-2 w-40 bg-white border-2 border-black 
+                                    rounded-lg shadow-lg text-sm font-bold text-navy">
+                      
+                      <Link
+                        to="/profile"
+                        className="flex items-center w-full px-4 py-2 hover:bg-orange hover:text-white"
+                        onClick={() => setDropdownOpen(false)}
+                      >
+                        Profile
+                      </Link>
+
                       <button
                         className="flex items-center w-full px-4 py-2 hover:bg-orange hover:text-white"
                         onClick={handleLogout}
@@ -60,6 +70,7 @@ const Navbar = () => {
                       </button>
                     </div>
                   )}
+
                 </div>
               ) : (
                 <>
