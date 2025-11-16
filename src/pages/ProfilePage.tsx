@@ -1,4 +1,3 @@
-// src/pages/ProfilePage.tsx
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabaseClient";
 import { useAuth } from "@/contexts/authContext";
@@ -19,20 +18,38 @@ const ProfilePage = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchProfile = async () => {
-    if (!user) return;
-
+const fetchProfile = async () => {
+  if (!user) {
+    setLoading(false);
+    return;
+  }
+  try {
     const { data, error } = await supabase
       .from("profiles")
       .select("*")
       .eq("id", user.id)
-      .single();
+      .limit(1);
 
-    if (error) console.error("Profile fetch error:", error);
-    else setProfile(data);
-
+    if (error) {
+      // Treat "no rows" from PostgREST (PGRST116 / 406) as an empty profile
+      if ((error as any)?.code === "PGRST116" || (error as any)?.status === 406) {
+        setProfile(null);
+      } else {
+        console.error("Profile fetch error:", error);
+        setProfile(null);
+      }
+    } else {
+      // `.limit(1)` returns an array; pick the first item or null
+      const profileData = Array.isArray(data) ? data[0] ?? null : data ?? null;
+      setProfile(profileData);
+    }
+  } catch (err) {
+    console.error("Unexpected fetchProfile error:", err);
+    setProfile(null);
+  } finally {
     setLoading(false);
-  };
+  }
+};
 
   useEffect(() => {
     fetchProfile();

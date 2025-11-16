@@ -27,8 +27,8 @@ const Navbar = () => {
 
   return (
     <nav className="border-b-4 border-black bg-navy">
-      <div className="container mx-auto px-4 py-3 md:py-4">
-        <div className="flex items-center justify-between">
+      <div className="w-full">
+        <div className="flex items-center justify-between px-4 md:px-8 py-3 md:py-4 max-w-7xl mx-auto">
           {/* Brand / Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="p-1.5 md:p-2 bg-orange border-4 border-black shadow-brutal-sm group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all">
