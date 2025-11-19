@@ -8,6 +8,9 @@ import Landing from "./pages/Landing";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
+import HackathonsList from "./pages/HackathonsList";
+import CreateHackathon from "./pages/CreateHackathon";
+import EditHackathon from "./pages/EditHackathon";
 
 import { AuthProvider } from "./contexts/authContext";
 import ProfilePage from "./pages/ProfilePage";
@@ -39,6 +42,10 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
+
+            <Route path="/hackathons" element={<HackathonsList />} />
+            <Route path="/hackathons/create" element={<CreateHackathon />} />
+            <Route path="/hackathons/edit/:id" element={<EditHackathon />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
