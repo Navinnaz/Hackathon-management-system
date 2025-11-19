@@ -4,7 +4,7 @@ interface FeatureCardProps {
   icon: LucideIcon;
   title: string;
   description: string;
-  color: "navy" | "orange" | "green";
+  color: "red" | "orange" | "green";
 }
 
 const colorClasses = {
