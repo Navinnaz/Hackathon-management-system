@@ -48,7 +48,7 @@ const Navbar = () => {
                           group-hover:shadow-none transition-all overflow-hidden"
             >
               <img
-                src="public\WhatsApp_Image_2025-11-22_at_01.17.04_0065d5bd-removebg-preview.png"
+                src="WhatsApp_Image_2025-11-22_at_01.17.04_0065d5bd-removebg-preview.png"
                 alt="Hackumi logo"
                 className="w-full h-full object-cover"
               />
