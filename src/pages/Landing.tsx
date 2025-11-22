@@ -261,11 +261,11 @@ const Landing = () => {
 
           {/* CTA Section */}
           <section className="container mx-auto px-4 py-20 md:py-32">
-            <div className="bg-orange border-4 border-black shadow-brutal-lg p-8 md:p-16 text-center">
+            <div className="bg-orange border-4 border-black shadow-brutal-lg p-8 md:p-16 text-center flex flex-col items-center">
               <h2 className="text-4xl md:text-6xl font-black text-off-white mb-6 uppercase">Ready to Start Building?</h2>
               <p className="text-xl font-semibold text-off-white/90 mb-8 max-w-2xl mx-auto">Join the community of innovators and start your hackathon journey today. No credit card required.</p>
-              <Link to="/signup">
-                <Button variant="outline" size="lg" className="bg-off-white text-orange border-4 border-black shadow-brutal hover:bg-navy hover:text-off-white">Create Free Account</Button>
+              <Link to="/signup" className="w-full sm:w-auto mt-6 flex justify-center">
+                <Button variant="outline" size="lg" className="bg-off-white text-orange border-4 border-black shadow-brutal hover:bg-navy hover:text-off-white w-full sm:w-auto max-w-xs">Create Free Account</Button>
               </Link>
             </div>
           </section>
