@@ -12,6 +12,7 @@ export default function SecondaryNav() {
   const [navbarHeight, setNavbarHeight] = useState(64);
   const [secondaryHeight, setSecondaryHeight] = useState(56);
   const navRef = useRef<HTMLElement | null>(null);
+  const [overlap, setOverlap] = useState(80);
 
   useEffect(() => {
     const measure = () => {
@@ -22,20 +23,24 @@ export default function SecondaryNav() {
 
     measure();
     window.addEventListener("resize", measure);
+    // keep overlap smaller on narrow screens to avoid excessive overlap
+    const updateOverlap = () => setOverlap(window.innerWidth < 640 ? 40 : 80);
+    updateOverlap();
+    window.addEventListener("resize", updateOverlap);
     const onScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       window.removeEventListener("resize", measure);
+      window.removeEventListener("resize", updateOverlap);
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   // small negative overlap so content sits a bit higher under the nav (prevents a large empty gap)
-  const OVERLAP = 80; // px
   const spacerHeight = scrolled
-    ? Math.max(0, secondaryHeight - OVERLAP)
-    : Math.max(0, navbarHeight + secondaryHeight - OVERLAP);
+    ? Math.max(0, secondaryHeight - overlap)
+    : Math.max(0, navbarHeight + secondaryHeight - overlap);
 
   // transition timing used for both spacer and nav for a smooth feel
   const transition = "top 220ms cubic-bezier(0.22,1,0.36,1), box-shadow 200ms";
@@ -67,9 +72,9 @@ export default function SecondaryNav() {
         }}
         aria-label="Secondary navigation"
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <ul className="flex items-center justify-center py-3 gap-8">
-            <li>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 overflow-x-auto">
+          <ul className="flex items-center justify-center py-3 gap-4 sm:gap-8 whitespace-nowrap">
+            <li className="inline-flex">
               <Link
                 to="/teams"
                 className={`nav-pill ${isActive("/teams") ? "nav-pill-active" : ""}`}
@@ -79,7 +84,7 @@ export default function SecondaryNav() {
               </Link>
             </li>
 
-            <li>
+            <li className="inline-flex">
               <Link
                 to="/hackathons"
                 className={`nav-pill ${isActive("/hackathons") ? "nav-pill-active" : ""}`}
@@ -89,7 +94,7 @@ export default function SecondaryNav() {
               </Link>
             </li>
 
-            <li>
+            <li className="inline-flex">
               <Link
                 to="/projects"
                 className={`nav-pill ${isActive("/projects") ? "nav-pill-active" : ""}`}
@@ -99,7 +104,7 @@ export default function SecondaryNav() {
               </Link>
             </li>
 
-            <li>
+            <li className="inline-flex">
               <Link
                 to="/events"
                 className={`nav-pill ${isActive("/events") ? "nav-pill-active" : ""}`}
@@ -109,7 +114,7 @@ export default function SecondaryNav() {
               </Link>
             </li>
 
-            <li>
+            <li className="inline-flex">
               <Link
                 to="/leaderboard"
                 className={`nav-pill ${isActive("/leaderboard") ? "nav-pill-active" : ""}`}

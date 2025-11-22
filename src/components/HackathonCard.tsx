@@ -210,9 +210,9 @@ export default function HackathonCard({ hackathon, onRegistrationChange }: Props
 
       {/* Bottom Section: Status chips + Button */}
       <div className="mt-auto">
-        <div className="flex flex-wrap gap-2 mb-4 items-center justify-between">
+        <div className="flex flex-col sm:flex-row gap-2 mb-4 items-start sm:items-center justify-between">
           {/* Status Chips */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-2 sm:mb-0">
             {hackathon.location && (
               <span className="px-3 py-1 text-xs font-bold uppercase bg-navy/10 border-2 border-navy text-navy rounded-full">
                 {hackathon.location}
@@ -230,14 +230,14 @@ export default function HackathonCard({ hackathon, onRegistrationChange }: Props
 
           {/* Participate Button */}
           {user && !hackathon.created_by?.includes(user.id) && (
-            <div>
+            <div className="w-full sm:w-auto">
               {!isRegistered ? (
                 <Button
                   onClick={handleParticipate}
                   disabled={registering}
                   variant="hero"
                   size="sm"
-                  className="font-bold"
+                  className="font-bold w-full sm:w-auto"
                 >
                   {registering ? "Registering..." : "Participate!"}
                 </Button>
@@ -245,7 +245,7 @@ export default function HackathonCard({ hackathon, onRegistrationChange }: Props
                 <Button
                   onClick={handleUnregister}
                   disabled={registering}
-                  className="bg-red-600 text-off-white border-2 border-black font-bold"
+                  className="bg-red-600 text-off-white border-2 border-black font-bold w-full sm:w-auto"
                   size="sm"
                 >
                   Unregister
